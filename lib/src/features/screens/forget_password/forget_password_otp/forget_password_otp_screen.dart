@@ -37,7 +37,7 @@ class ForgetPasswordOtpScreen extends StatelessWidget {
               height: 40.0,
             ),
             const Text(
-              "$tOtpMessage support@aabha_application.com",
+              "$tOtpMessage support@healo_users_application.com",
               textAlign: TextAlign.center,
             ),
             const SizedBox(

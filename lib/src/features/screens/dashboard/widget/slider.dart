@@ -25,7 +25,7 @@ class slider extends StatelessWidget {
       items: imgList
           .map((item) => Container(
                 child: Center(
-                  child: Image.network(item, fit: BoxFit.cover, width: 1000),
+                  child: Image.asset(item, fit: BoxFit.cover, width: 1000),
                 ),
               ))
           .toList(),

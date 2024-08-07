@@ -21,7 +21,7 @@ class SignupScreen extends StatelessWidget {
                 FormHeaderWidget(
                     title: tSignup,
                     subtitle: tSignUpSubTitle,
-                    image: tWelcomeScreenImage),
+                    image: tLoginImage),
                 SignUpFormWidget(),
                 Column(
                   children: [

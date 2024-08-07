@@ -1,23 +1,39 @@
 import 'package:healo_users_app/src/constants/sizes.dart';
-import 'package:healo_users_app/src/features/screens/dashboard/widget/appbar.dart';
+import 'package:healo_users_app/src/common_widgets/appbar/appbar.dart';
 import 'package:healo_users_app/src/features/screens/dashboard/widget/banner_card.dart';
 import 'package:healo_users_app/src/features/screens/dashboard/widget/category_card.dart';
 import 'package:healo_users_app/src/features/screens/dashboard/widget/search.dart';
 import 'package:healo_users_app/src/features/screens/dashboard/widget/slider.dart';
 import 'package:healo_users_app/src/features/screens/dashboard/widget/top_sources_card.dart';
 import 'package:flutter/material.dart';
+import '../../../common_widgets/bottom_navbar/custom_bottom_navbar.dart';
+import '../../../constants/colors.dart';
 import '../../../constants/image_strjngs.dart';
 import '../../../constants/text_strings.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   Dashboard({super.key});
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
   final List<String> imgList = [
-    'ass',
-    'https://via.placeholder.com/600x400?text=Banner+2',
-    'https://via.placeholder.com/600x400?text=Banner+3',
-    'https://via.placeholder.com/600x400?text=Banner+4',
-    'https://via.placeholder.com/600x400?text=Banner+5',
+    'assets/dashboard_screen/slider_images/banner1.png',
+    'assets/dashboard_screen/slider_images/banner2.png',
+    'assets/dashboard_screen/slider_images/banner1.png',
+    'assets/dashboard_screen/slider_images/banner2.png',
+    'assets/dashboard_screen/slider_images/banner1.png',
   ];
+
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +109,10 @@ class Dashboard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

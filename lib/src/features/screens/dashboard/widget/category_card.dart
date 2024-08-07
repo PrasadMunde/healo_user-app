@@ -30,7 +30,7 @@ class CategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)),
-                  color: tCardBggColor,
+                  color: tCardBgColor,
                 ),
                 child: Center(
                   child: Image(image: image),

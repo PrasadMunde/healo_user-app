@@ -11,8 +11,8 @@ class TAppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     textTheme: TTextTheme.lightTextTheme,
-    outlinedButtonTheme: TOutlinedButtonTheme.ligthOutlinedButtonTheme,
-    elevatedButtonTheme: TElevatedButton.ligthElevatedButtonTheme,
+    outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
+    elevatedButtonTheme: TElevatedButton.lightElevatedButtonTheme,
     inputDecorationTheme: TTextFormFieldTheme.lightInputDecorationTheme,
     //scaffoldBackgroundColor: Colors.cyanAccent
   );

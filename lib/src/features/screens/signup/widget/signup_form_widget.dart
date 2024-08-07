@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'dart:convert';
 import 'dart:math';
 import '../../../../constants/sizes.dart';
@@ -15,24 +16,36 @@ class SignUpFormWidget extends StatefulWidget {
 
 class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   String? _name, _phone, _email;
-  int _randomNumber=0;
+  int _randomNumber = 0;
 
+  final TextEditingController _cname = TextEditingController();
+  final TextEditingController _cemail = TextEditingController();
   final TextEditingController _phoneNo = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _confirmPassword = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final supabase = Supabase.instance.client;
+  void data() async{
+  final response = await supabase.from('profiles').insert({
+    'name': _cname.text,
+    'email': _cemail.text,
+    'phone': _phoneNo.text,
+    'password': _password.text
+  });
+  print(response.toString());
+  }
   Future<void> _sendOTP() async {
     final phoneNumber = _phoneNo.text;
-     _randomNumber = 100000 + Random().nextInt(900000);
+    _randomNumber = 100000 + Random().nextInt(900000);
 
     final url = Uri.parse('https://www.fast2sms.com/dev/bulkV2');
     final headers = {
-    "authorization":"SOtq7kywLeozgV1dhTibYUKJGuxvDspjfH5IX9lNrMWcPR8A64X7vzFlDMWhEQxrCLdym3ie65TuK2Zj",
-    "Content-Type":"application/json"
+      "authorization":
+          "SOtq7kywLeozgV1dhTibYUKJGuxvDspjfH5IX9lNrMWcPR8A64X7vzFlDMWhEQxrCLdym3ie65TuK2Zj",
+      "Content-Type": "application/json"
     };
-    
+
     final body = json.encode({
       "route": "otp",
       "variables_values": _randomNumber.toString(),
@@ -64,6 +77,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: _cname,
               decoration: const InputDecoration(
                   label: Text(tFullName),
                   prefixIcon: Icon(Icons.person_outline_rounded)),
@@ -79,6 +93,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: _cemail,
               decoration: const InputDecoration(
                   label: Text(tEmail),
                   prefixIcon: Icon(Icons.person_outline_rounded)),
@@ -86,7 +101,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
                 }
-                if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)){
+                if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                    .hasMatch(value)) {
                   return "Please enter valid email";
                 }
                 return null;
@@ -106,7 +122,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your phone number';
                 }
-                if(value.length < 10 || value.length > 10){
+                if (value.length < 10 || value.length > 10) {
                   return "Please enter valid phone number";
                 }
                 // Additional phone number validation can be added here
@@ -159,10 +175,13 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                 onPressed: () {
                   if (_formKey.currentState?.validate() == true) {
                     _formKey.currentState?.save();
+                    data();
                     _sendOTP();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context)=>ForgetPasswordOtpScreen(otp: _randomNumber.toString()))
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgetPasswordOtpScreen(
+                                otp: _randomNumber.toString())));
                   }
                 },
                 child: Text(tSignup.toUpperCase()),

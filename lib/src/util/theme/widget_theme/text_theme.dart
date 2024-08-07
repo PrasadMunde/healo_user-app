@@ -12,7 +12,7 @@ class TTextTheme {
     headlineMedium: GoogleFonts.montserrat(fontSize: 28, fontWeight: FontWeight.bold),
     headlineSmall: GoogleFonts.montserrat(fontSize: 24, fontWeight: FontWeight.bold),
     titleLarge: GoogleFonts.montserrat(fontSize: 22, fontWeight: FontWeight.bold),
-    titleMedium: GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.bold),
+    titleMedium: GoogleFonts.montserrat(fontSize: 18, fontWeight: FontWeight.bold),
     titleSmall: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold),
     bodyLarge: GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.normal),
     bodyMedium: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.normal),

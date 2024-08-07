@@ -56,7 +56,11 @@ class WelcomeScreen extends StatelessWidget {
                                 builder: (context) => LoginScreen()));
                       },
                       style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(),
+                        elevation: 25.0, // Shadow elevation
+                        shadowColor: Colors.black.withOpacity(1.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0), // Rounded corners
+                        ),
                         foregroundColor: tSecondaryColor,
                         side: BorderSide(color: tSecondaryColor),
                         padding: EdgeInsets.symmetric(vertical: tButtonHeight),
@@ -76,8 +80,11 @@ class WelcomeScreen extends StatelessWidget {
                                 builder: (context) => SignupScreen()));
                       },
                       style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(),
+                        elevation: 25.0, // Shadow elevation
+                        shadowColor: Colors.black.withOpacity(1.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0), // Rounded corners
+                        ),
                         side: BorderSide(color: tSecondaryColor),
                         padding: EdgeInsets.symmetric(vertical: tButtonHeight),
                       ),
