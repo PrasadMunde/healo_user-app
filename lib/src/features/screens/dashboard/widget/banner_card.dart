@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:healo_users_app/src/features/screens/healo_features/healo_features.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/image_strjngs.dart';
 import '../../../../constants/sizes.dart';
@@ -82,7 +82,11 @@ class banner extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>HealoFeatures())
+                    );
+                  },
                   child: const Text('View All'),
                   style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(

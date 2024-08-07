@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../constants/colors.dart';
-import '../../../../constants/image_strjngs.dart';
-import '../../../../constants/text_strings.dart';
+import 'package:healo_users_app/src/features/screens/profile/profile_screen.dart';
+import '../../constants/colors.dart';
+import '../../constants/image_strjngs.dart';
+import '../../constants/text_strings.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -14,9 +15,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const Icon(
-        Icons.menu,
-        color: Colors.black,
+      leading: InkWell(
+        onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileScreen()));},
+        child: const Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
       ),
       title: Text(
         tAppName,
@@ -33,7 +37,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: tCardBgColor,
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileScreen()));
+            },
             icon: const Image(image: AssetImage(tProfileImage)),
           ),
         ),
